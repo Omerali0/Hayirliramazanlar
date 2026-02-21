@@ -1,0 +1,142 @@
+<!doctype html>
+<html lang="tr">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>İzolasyon Kaplama</title>
+    <link rel="stylesheet" href="navBar.css" />
+  </head>
+  <body>
+    <header class="navbar">
+      <div class="left-area">
+        <div class="hamburger" id="menuBtn">
+          <span>☰</span> <span class="menu-text">MENU</span>
+        </div>
+      </div>
+
+      <a href="index.html" class="logo">
+        <img src="images/sonlogo.png" alt="Tunahan Aydoğan" />
+      </a>
+
+      <div class="right-area">
+        <span class="phone-desktop">+90 530 504 26 77</span>
+
+        <a href="tel:+905305042677" class="phone-mobile">
+          <svg
+            xmlns="http://www.w3.org/2000/svg"
+            width="24"
+            height="24"
+            viewBox="0 0 24 24"
+            fill="none"
+            stroke="currentColor"
+            stroke-width="2"
+            stroke-linecap="round"
+            stroke-linejoin="round"
+          >
+            <path
+              d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72 12.84 12.84 0 0 0 .7 2.81 2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45 12.84 12.84 0 0 0 2.81.7A2 2 0 0 1 22 16.92z"
+            ></path>
+          </svg>
+        </a>
+      </div>
+    </header>
+
+    <nav class="side-menu" id="sideMenu">
+      <a href="index.html">Ana Sayfa</a>
+      <a href="hakkimizda.html">Hakkımızda</a>
+      <a href="projeler.html">Projeler</a>
+      <a href="Colors.html">Renk Kataloğu</a>
+    </nav>
+    <div
+      class="sayfa-kapak"
+      style="background-image: url(&quot;images/izoler.webp&quot;)"
+    >
+      <div class="kapak-perde"></div>
+
+      <div class="kapak-baslik">
+        <h1>
+          Dış Cephede Enerji Verimliliğinin Kalbi: A1 Sınıfı Taş Yünü İzolasyonu
+        </h1>
+      </div>
+    </div>
+
+    <section class="sayfa-icerik">
+      <div class="icerik-kutusu">
+        <h2>GİRİŞ</h2>
+        <p>
+          Bir dış cephenin güzelliği kadar, altındaki izolasyon katmanının
+          kalitesi de binanın yaşam kalitesini belirler. Cephesan, tüm
+          projelerinde yangın güvenliğini ve enerji tasarrufunu odağa alır.
+        </p>
+        <h2>Teknik Parametreler</h2>
+        <ul>
+          <li>
+            Yangın Bariyeri: 1000°C ısıya dayanıklı A1 sınıfı taş yünü ile
+            binayı yangın sıçramalarına karşı korur.
+          </li>
+          <li>
+            Isı ve Akustik Konfor: Isı kaybını minimize ederken, dış ortam
+            gürültüsünü absorbe eder.
+          </li>
+        </ul>
+        <h2>Kullanım Alanları</h2>
+        <ul>
+          <li>
+            Tüm Giydirme Cepheler: Kompozit, metal ve seramik sistemlerin
+            arkasında standart izolasyon katmanı olarak.
+          </li>
+          <li>
+            Yüksek Riskli Yapılar: Okul, yurt ve hastane gibi yangın
+            güvenliğinin zorunlu olduğu binalar.
+          </li>
+          <li>
+            Sanayi Yapıları: Enerji tasarrufunun üretim maliyetine doğrudan etki
+            ettiği tesisler.
+          </li>
+        </ul>
+        <div class="cta-container">
+          <h3>Projeleriniz İçin Detaylı Bilgi Alın</h3>
+          <p>
+            İzolasyon çözümleri ve uzman ekibimizle görüşmek için bize hemen
+            ulaşın.
+          </p>
+          <a href="tel:+905305042677" class="cta-button">
+            <svg
+              xmlns="http://www.w3.org/2000/svg"
+              width="22"
+              height="22"
+              viewBox="0 0 24 24"
+              fill="none"
+              stroke="currentColor"
+              stroke-width="2"
+              stroke-linecap="round"
+              stroke-linejoin="round"
+            >
+              <path
+                d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72 12.84 12.84 0 0 0 .7 2.81 2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45 12.84 12.84 0 0 0 2.81.7A2 2 0 0 1 22 16.92z"
+              ></path>
+            </svg>
+            BİZİ ARAYIN: +90 530 504 26 77
+          </a>
+        </div>
+      </div>
+    </section>
+    <script>
+      const menuBtn = document.getElementById("menuBtn");
+      const sideMenu = document.getElementById("sideMenu");
+      const overlay = document.getElementById("overlay");
+
+      if (menuBtn) {
+        menuBtn.addEventListener("click", () => {
+          sideMenu.classList.toggle("active");
+          overlay.classList.toggle("active");
+        });
+
+        overlay.addEventListener("click", () => {
+          sideMenu.classList.remove("active");
+          overlay.classList.remove("active");
+        });
+      }
+    </script>
+  </body>
+</html>

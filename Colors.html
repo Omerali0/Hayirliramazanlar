@@ -1,0 +1,1905 @@
+<!doctype html>
+<html lang="tr">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Premium Renk ve Malzeme Kataloğu</title>
+    <link rel="stylesheet" href="navBar.css" />
+    <style>
+      * {
+        box-sizing: border-box;
+        font-family: "Segoe UI", sans-serif;
+        margin: 0;
+        padding: 0;
+      }
+
+      body {
+        background-color: #050505;
+        color: white;
+        padding: 40px 20px;
+      }
+
+      .baslik {
+        text-align: center;
+        margin-top: 150px;
+        margin-bottom: 30px;
+        font-size: 32px;
+        font-weight: bold;
+      }
+
+      .filtre-menusu {
+        display: flex;
+        gap: 15px;
+        overflow-x: auto;
+        padding-bottom: 15px;
+        margin-bottom: 30px;
+        scrollbar-width: none;
+        -ms-overflow-style: none;
+      }
+
+      .filtre-menusu::-webkit-scrollbar {
+        display: none;
+      }
+
+      .filtre-btn {
+        background-color: #111;
+        color: #aaa;
+        border: 1px solid #333;
+        padding: 12px 25px;
+        border-radius: 30px;
+        font-size: 15px;
+        font-weight: 600;
+        cursor: pointer;
+        white-space: nowrap;
+        transition: all 0.3s ease;
+      }
+
+      .filtre-btn:hover,
+      .filtre-btn.aktif {
+        background-color: white;
+        color: black;
+        border-color: white;
+        transform: translateY(-2px);
+        box-shadow: 0 5px 15px rgba(255, 255, 255, 0.2);
+      }
+
+      .renk-grid {
+        display: grid;
+        grid-template-columns: repeat(auto-fill, minmax(240px, 1fr));
+        gap: 25px;
+      }
+
+      .renk-karti {
+        background: #111;
+        border: 1px solid #222;
+        border-radius: 15px;
+        padding: 15px;
+        text-align: center;
+        transition: all 0.4s ease;
+        cursor: pointer;
+        overflow: hidden;
+        animation: fadeIn 0.5s ease;
+      }
+
+      .renk-karti:hover {
+        transform: translateY(-8px);
+        box-shadow: 0 15px 30px rgba(0, 0, 0, 0.8);
+        border-color: #555;
+      }
+
+      .renk-gorseli-kutu {
+        width: 100%;
+        aspect-ratio: 4 / 3;
+        border-radius: 8px;
+        overflow: hidden;
+        background-color: #000;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        margin-bottom: 15px;
+      }
+
+      .renk-gorseli-kutu img {
+        width: 100%;
+        height: 100%;
+        object-fit: cover;
+        transition: transform 0.5s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+      }
+
+      .renk-karti:hover .renk-gorseli-kutu img {
+        transform: scale(1.08);
+      }
+
+      .renk-kodu {
+        font-size: 18px;
+        font-weight: bold;
+        color: #fff;
+        margin-bottom: 5px;
+        letter-spacing: 1px;
+      }
+
+      .renk-adi {
+        font-size: 14px;
+        color: #888;
+      }
+
+      @keyframes fadeIn {
+        from {
+          opacity: 0;
+          transform: scale(0.95);
+        }
+        to {
+          opacity: 1;
+          transform: scale(1);
+        }
+      }
+    </style>
+  </head>
+  <body>
+    <header class="navbar">
+      <div class="left-area">
+        <div class="hamburger" id="menuBtn">
+          <span>☰</span> <span class="menu-text">MENU</span>
+        </div>
+      </div>
+
+      <a href="index.html" class="logo">
+        <img src="images/sonlogo.png" alt="Tunahan Aydoğan" />
+      </a>
+
+      <div class="right-area">
+        <span class="phone-desktop">+90 530 504 26 77</span>
+
+        <a href="tel:+905305042677" class="phone-mobile">
+          <svg
+            xmlns="http://www.w3.org/2000/svg"
+            width="24"
+            height="24"
+            viewBox="0 0 24 24"
+            fill="none"
+            stroke="currentColor"
+            stroke-width="2"
+            stroke-linecap="round"
+            stroke-linejoin="round"
+          >
+            <path
+              d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72 12.84 12.84 0 0 0 .7 2.81 2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45 12.84 12.84 0 0 0 2.81.7A2 2 0 0 1 22 16.92z"
+            ></path>
+          </svg>
+        </a>
+      </div>
+      <div class="side-menu" id="sideMenu">
+        <a href="index.html">Ana Sayfa</a>
+        <a href="hakkimizda.html">Hakkımızda</a>
+        <a href="Colors.html">Renk Kataloğu</a>
+        <a href="projeler.html">Projeler</a>
+      </div>
+
+      <div class="overlay" id="overlay"></div>
+    </header>
+    <div class="baslik">Sonsuz Renk Sonsuz Tasarım</div>
+
+    <div class="filtre-menusu">
+      <button class="filtre-btn aktif" data-filter="all">All (210)</button>
+      <button class="filtre-btn" data-filter="solid">Solid</button>
+      <button class="filtre-btn" data-filter="metalikseri">Metalik</button>
+      <button class="filtre-btn" data-filter="brushseri">Brushed Series</button>
+      <button class="filtre-btn" data-filter="iridyumseri">
+        Iridium Series
+      </button>
+      <button class="filtre-btn" data-filter="metallookseri">
+        Metalook Series
+      </button>
+      <button class="filtre-btn" data-filter="vernikseri">
+        vernikseri Series
+      </button>
+      <button class="filtre-btn" data-filter="anadizedseri">
+        Anodize Look
+      </button>
+      <button class="filtre-btn" data-filter="aquaseri">Aqua Line</button>
+      <button class="filtre-btn" data-filter="denimleseri">Denim Line</button>
+      <button class="filtre-btn" data-filter="sparklineseri">
+        Sparkling Series
+      </button>
+      <button class="filtre-btn" data-filter="wood">Wood Series</button>
+      <button class="filtre-btn" data-filter="stoneseri">Stone Series</button>
+      <button class="filtre-btn" data-filter="concreatseri">
+        Concrete Series
+      </button>
+    </div>
+
+    <div class="renk-grid">
+      <div class="renk-karti" data-category="solid">
+        <div class="renk-gorseli-kutu">
+          <img src="solid/1.webp" alt="RAL 100" loading="lazy" />
+        </div>
+        <div class="renk-kodu">RAL 100</div>
+        <div class="renk-adi">Solid</div>
+      </div>
+      <div class="renk-karti" data-category="solid">
+        <div class="renk-gorseli-kutu">
+          <img src="solid/2.webp" alt="RAL 100" loading="lazy" />
+        </div>
+        <div class="renk-kodu">RAL 100</div>
+        <div class="renk-adi">Solid</div>
+      </div>
+      <div class="renk-karti" data-category="solid">
+        <div class="renk-gorseli-kutu">
+          <img src="solid/3.webp" alt="RAL 100" loading="lazy" />
+        </div>
+        <div class="renk-kodu">RAL 100</div>
+        <div class="renk-adi">Solid</div>
+      </div>
+      <div class="renk-karti" data-category="solid">
+        <div class="renk-gorseli-kutu">
+          <img src="solid/4.webp" alt="RAL 100" loading="lazy" />
+        </div>
+        <div class="renk-kodu">RAL 100</div>
+        <div class="renk-adi">Solid</div>
+      </div>
+      <div class="renk-karti" data-category="solid">
+        <div class="renk-gorseli-kutu">
+          <img src="solid/5.webp" alt="RAL 100" loading="lazy" />
+        </div>
+        <div class="renk-kodu">RAL 100</div>
+        <div class="renk-adi">Solid</div>
+      </div>
+      <div class="renk-karti" data-category="solid">
+        <div class="renk-gorseli-kutu">
+          <img src="solid/6.webp" alt="RAL 100" loading="lazy" />
+        </div>
+        <div class="renk-kodu">RAL 100</div>
+        <div class="renk-adi">Solid</div>
+      </div>
+      <div class="renk-karti" data-category="solid">
+        <div class="renk-gorseli-kutu">
+          <img src="solid/7.webp" alt="RAL 100" loading="lazy" />
+        </div>
+        <div class="renk-kodu">RAL 100</div>
+        <div class="renk-adi">Solid</div>
+      </div>
+      <div class="renk-karti" data-category="solid">
+        <div class="renk-gorseli-kutu">
+          <img src="solid/8.webp" alt="RAL 100" loading="lazy" />
+        </div>
+        <div class="renk-kodu">RAL 100</div>
+        <div class="renk-adi">Solid</div>
+      </div>
+      <div class="renk-karti" data-category="solid">
+        <div class="renk-gorseli-kutu">
+          <img src="solid/9.webp" alt="RAL 100" loading="lazy" />
+        </div>
+        <div class="renk-kodu">RAL 100</div>
+        <div class="renk-adi">Solid</div>
+      </div>
+      <div class="renk-karti" data-category="solid">
+        <div class="renk-gorseli-kutu">
+          <img src="solid/10.webp" alt="RAL 100" loading="lazy" />
+        </div>
+        <div class="renk-kodu">RAL 100</div>
+        <div class="renk-adi">Solid</div>
+      </div>
+      <div class="renk-karti" data-category="solid">
+        <div class="renk-gorseli-kutu">
+          <img src="solid/11.webp" alt="RAL 100" loading="lazy" />
+        </div>
+        <div class="renk-kodu">RAL 100</div>
+        <div class="renk-adi">Solid</div>
+      </div>
+      <div class="renk-karti" data-category="solid">
+        <div class="renk-gorseli-kutu">
+          <img src="solid/12.webp" alt="RAL 100" loading="lazy" />
+        </div>
+        <div class="renk-kodu">RAL 100</div>
+        <div class="renk-adi">Solid</div>
+      </div>
+      <div class="renk-karti" data-category="solid">
+        <div class="renk-gorseli-kutu">
+          <img src="solid/13.webp" alt="RAL 100" loading="lazy" />
+        </div>
+        <div class="renk-kodu">RAL 100</div>
+        <div class="renk-adi">Solid</div>
+      </div>
+      <div class="renk-karti" data-category="solid">
+        <div class="renk-gorseli-kutu">
+          <img src="solid/14.webp" alt="RAL 100" loading="lazy" />
+        </div>
+        <div class="renk-kodu">RAL 100</div>
+        <div class="renk-adi">Solid</div>
+      </div>
+      <div class="renk-karti" data-category="solid">
+        <div class="renk-gorseli-kutu">
+          <img src="solid/15.webp" alt="RAL 100" loading="lazy" />
+        </div>
+        <div class="renk-kodu">RAL 100</div>
+        <div class="renk-adi">Solid</div>
+      </div>
+      <div class="renk-karti" data-category="solid">
+        <div class="renk-gorseli-kutu">
+          <img src="solid/16.webp" alt="RAL 100" loading="lazy" />
+        </div>
+        <div class="renk-kodu">RAL 100</div>
+        <div class="renk-adi">Solid</div>
+      </div>
+      <div class="renk-karti" data-category="solid">
+        <div class="renk-gorseli-kutu">
+          <img src="solid/17.webp" alt="RAL 100" loading="lazy" />
+        </div>
+        <div class="renk-kodu">RAL 100</div>
+        <div class="renk-adi">Solid</div>
+      </div>
+      <div class="renk-karti" data-category="solid">
+        <div class="renk-gorseli-kutu">
+          <img src="solid/18.webp" alt="RAL 100" loading="lazy" />
+        </div>
+        <div class="renk-kodu">RAL 100</div>
+        <div class="renk-adi">Solid</div>
+      </div>
+      <div class="renk-karti" data-category="solid">
+        <div class="renk-gorseli-kutu">
+          <img src="solid/19.webp" alt="RAL 100" loading="lazy" />
+        </div>
+        <div class="renk-kodu">RAL 100</div>
+        <div class="renk-adi">Solid</div>
+      </div>
+      <div class="renk-karti" data-category="solid">
+        <div class="renk-gorseli-kutu">
+          <img src="solid/20.webp" alt="RAL 100" loading="lazy" />
+        </div>
+        <div class="renk-kodu">RAL 100</div>
+        <div class="renk-adi">Solid</div>
+      </div>
+      <div class="renk-karti" data-category="solid">
+        <div class="renk-gorseli-kutu">
+          <img src="solid/21.webp" alt="RAL 100" loading="lazy" />
+        </div>
+        <div class="renk-kodu">RAL 100</div>
+        <div class="renk-adi">Solid</div>
+      </div>
+      <div class="renk-karti" data-category="solid">
+        <div class="renk-gorseli-kutu">
+          <img src="solid/22.webp" alt="RAL 100" loading="lazy" />
+        </div>
+        <div class="renk-kodu">RAL 100</div>
+        <div class="renk-adi">Solid</div>
+      </div>
+      <div class="renk-karti" data-category="solid">
+        <div class="renk-gorseli-kutu">
+          <img src="solid/23.webp" alt="RAL 100" loading="lazy" />
+        </div>
+        <div class="renk-kodu">RAL 100</div>
+        <div class="renk-adi">Solid</div>
+      </div>
+      <div class="renk-karti" data-category="solid">
+        <div class="renk-gorseli-kutu">
+          <img src="solid/24.webp" alt="RAL 100" loading="lazy" />
+        </div>
+        <div class="renk-kodu">RAL 100</div>
+        <div class="renk-adi">Solid</div>
+      </div>
+      <div class="renk-karti" data-category="solid">
+        <div class="renk-gorseli-kutu">
+          <img src="solid/25.webp" alt="RAL 100" loading="lazy" />
+        </div>
+        <div class="renk-kodu">RAL 100</div>
+        <div class="renk-adi">Solid</div>
+      </div>
+      <div class="renk-karti" data-category="solid">
+        <div class="renk-gorseli-kutu">
+          <img src="solid/26.webp" alt="RAL 100" loading="lazy" />
+        </div>
+        <div class="renk-kodu">RAL 100</div>
+        <div class="renk-adi">Solid</div>
+      </div>
+      <div class="renk-karti" data-category="solid">
+        <div class="renk-gorseli-kutu">
+          <img src="solid/27.webp" alt="RAL 100" loading="lazy" />
+        </div>
+        <div class="renk-kodu">RAL 100</div>
+        <div class="renk-adi">Solid</div>
+      </div>
+      <div class="renk-karti" data-category="solid">
+        <div class="renk-gorseli-kutu">
+          <img src="solid/28.webp" alt="RAL 100" loading="lazy" />
+        </div>
+        <div class="renk-kodu">RAL 100</div>
+        <div class="renk-adi">Solid</div>
+      </div>
+      <div class="renk-karti" data-category="solid">
+        <div class="renk-gorseli-kutu">
+          <img src="solid/29.webp" alt="RAL 100" loading="lazy" />
+        </div>
+        <div class="renk-kodu">RAL 100</div>
+        <div class="renk-adi">Solid</div>
+      </div>
+      <div class="renk-karti" data-category="solid">
+        <div class="renk-gorseli-kutu">
+          <img src="solid/30.webp" alt="RAL 100" loading="lazy" />
+        </div>
+        <div class="renk-kodu">RAL 100</div>
+        <div class="renk-adi">Solid</div>
+      </div>
+      <div class="renk-karti" data-category="solid">
+        <div class="renk-gorseli-kutu">
+          <img src="solid/31.webp" alt="RAL 100" loading="lazy" />
+        </div>
+        <div class="renk-kodu">RAL 100</div>
+        <div class="renk-adi">Solid</div>
+      </div>
+      <div class="renk-karti" data-category="solid">
+        <div class="renk-gorseli-kutu">
+          <img src="solid/32.webp" alt="RAL 100" loading="lazy" />
+        </div>
+        <div class="renk-kodu">RAL 100</div>
+        <div class="renk-adi">Solid</div>
+      </div>
+      <div class="renk-karti" data-category="solid">
+        <div class="renk-gorseli-kutu">
+          <img src="solid/33.webp" alt="RAL 100" loading="lazy" />
+        </div>
+        <div class="renk-kodu">RAL 100</div>
+        <div class="renk-adi">Solid</div>
+      </div>
+      <div class="renk-karti" data-category="solid">
+        <div class="renk-gorseli-kutu">
+          <img src="solid/34.webp" alt="RAL 100" loading="lazy" />
+        </div>
+        <div class="renk-kodu">RAL 100</div>
+        <div class="renk-adi">Solid</div>
+      </div>
+      <div class="renk-karti" data-category="solid">
+        <div class="renk-gorseli-kutu">
+          <img src="solid/35.webp" alt="RAL 100" loading="lazy" />
+        </div>
+        <div class="renk-kodu">RAL 100</div>
+        <div class="renk-adi">Solid</div>
+      </div>
+      <div class="renk-karti" data-category="solid">
+        <div class="renk-gorseli-kutu">
+          <img src="solid/36.webp" alt="RAL 100" loading="lazy" />
+        </div>
+        <div class="renk-kodu">RAL 100</div>
+        <div class="renk-adi">Solid</div>
+      </div>
+      <div class="renk-karti" data-category="solid">
+        <div class="renk-gorseli-kutu">
+          <img src="solid/37.webp" alt="RAL 100" loading="lazy" />
+        </div>
+        <div class="renk-kodu">RAL 100</div>
+        <div class="renk-adi">Solid</div>
+      </div>
+      <div class="renk-karti" data-category="solid">
+        <div class="renk-gorseli-kutu">
+          <img src="solid/38.webp" alt="RAL 100" loading="lazy" />
+        </div>
+        <div class="renk-kodu">RAL 100</div>
+        <div class="renk-adi">Solid</div>
+      </div>
+      <div class="renk-karti" data-category="solid">
+        <div class="renk-gorseli-kutu">
+          <img src="solid/39.webp" alt="RAL 100" loading="lazy" />
+        </div>
+        <div class="renk-kodu">RAL 100</div>
+        <div class="renk-adi">Solid</div>
+      </div>
+      <div class="renk-karti" data-category="solid">
+        <div class="renk-gorseli-kutu">
+          <img src="solid/40.webp" alt="RAL 100" loading="lazy" />
+        </div>
+        <div class="renk-kodu">RAL 100</div>
+        <div class="renk-adi">Solid</div>
+      </div>
+      <div class="renk-karti" data-category="solid">
+        <div class="renk-gorseli-kutu">
+          <img src="solid/41.webp" alt="RAL 100" loading="lazy" />
+        </div>
+        <div class="renk-kodu">RAL 100</div>
+        <div class="renk-adi">Solid</div>
+      </div>
+      <div class="renk-karti" data-category="solid">
+        <div class="renk-gorseli-kutu">
+          <img src="solid/42.webp" alt="RAL 100" loading="lazy" />
+        </div>
+        <div class="renk-kodu">RAL 100</div>
+        <div class="renk-adi">Solid</div>
+      </div>
+      <div class="renk-karti" data-category="solid">
+        <div class="renk-gorseli-kutu">
+          <img src="solid/43.webp" alt="RAL 100" loading="lazy" />
+        </div>
+        <div class="renk-kodu">RAL 100</div>
+        <div class="renk-adi">Solid</div>
+      </div>
+      <div class="renk-karti" data-category="solid">
+        <div class="renk-gorseli-kutu">
+          <img src="solid/44.webp" alt="RAL 100" loading="lazy" />
+        </div>
+        <div class="renk-kodu">RAL 100</div>
+        <div class="renk-adi">Solid</div>
+      </div>
+      <div class="renk-karti" data-category="solid">
+        <div class="renk-gorseli-kutu">
+          <img src="solid/45.webp" alt="RAL 100" loading="lazy" />
+        </div>
+        <div class="renk-kodu">RAL 100</div>
+        <div class="renk-adi">Solid</div>
+      </div>
+      <div class="renk-karti" data-category="solid">
+        <div class="renk-gorseli-kutu">
+          <img src="solid/46.webp" alt="RAL 100" loading="lazy" />
+        </div>
+        <div class="renk-kodu">RAL 100</div>
+        <div class="renk-adi">Solid</div>
+      </div>
+      <div class="renk-karti" data-category="solid">
+        <div class="renk-gorseli-kutu">
+          <img src="solid/47.webp" alt="RAL 100" loading="lazy" />
+        </div>
+        <div class="renk-kodu">RAL 100</div>
+        <div class="renk-adi">Solid</div>
+      </div>
+      <div class="renk-karti" data-category="solid">
+        <div class="renk-gorseli-kutu">
+          <img src="solid/48.webp" alt="RAL 100" loading="lazy" />
+        </div>
+        <div class="renk-kodu">RAL 100</div>
+        <div class="renk-adi">Solid</div>
+      </div>
+      <div class="renk-karti" data-category="solid">
+        <div class="renk-gorseli-kutu">
+          <img src="solid/49.webp" alt="RAL 100" loading="lazy" />
+        </div>
+        <div class="renk-kodu">RAL 100</div>
+        <div class="renk-adi">Solid</div>
+      </div>
+      <div class="renk-karti" data-category="solid">
+        <div class="renk-gorseli-kutu">
+          <img src="solid/50.webp" alt="RAL 100" loading="lazy" />
+        </div>
+        <div class="renk-kodu">RAL 100</div>
+        <div class="renk-adi">Solid</div>
+      </div>
+      <div class="renk-karti" data-category="solid">
+        <div class="renk-gorseli-kutu">
+          <img src="solid/51.webp" alt="RAL 100" loading="lazy" />
+        </div>
+        <div class="renk-kodu">RAL 100</div>
+        <div class="renk-adi">Solid</div>
+      </div>
+      <div class="renk-karti" data-category="solid">
+        <div class="renk-gorseli-kutu">
+          <img src="solid/53.webp" alt="RAL 100" loading="lazy" />
+        </div>
+        <div class="renk-kodu">RAL 100</div>
+        <div class="renk-adi">Solid</div>
+      </div>
+      <div class="renk-karti" data-category="solid">
+        <div class="renk-gorseli-kutu">
+          <img src="solid/54.webp" alt="RAL 100" loading="lazy" />
+        </div>
+        <div class="renk-kodu">RAL 100</div>
+        <div class="renk-adi">Solid</div>
+      </div>
+      <div class="renk-karti" data-category="solid">
+        <div class="renk-gorseli-kutu">
+          <img src="solid/55.webp" alt="RAL 100" loading="lazy" />
+        </div>
+        <div class="renk-kodu">RAL 100</div>
+        <div class="renk-adi">Solid</div>
+      </div>
+      <div class="renk-karti" data-category="solid">
+        <div class="renk-gorseli-kutu">
+          <img src="solid/56.webp" alt="RAL 100" loading="lazy" />
+        </div>
+        <div class="renk-kodu">RAL 100</div>
+        <div class="renk-adi">Solid</div>
+      </div>
+      <div class="renk-karti" data-category="solid">
+        <div class="renk-gorseli-kutu">
+          <img src="solid/57.webp" alt="RAL 100" loading="lazy" />
+        </div>
+        <div class="renk-kodu">RAL 100</div>
+        <div class="renk-adi">Solid</div>
+      </div>
+      <div class="renk-karti" data-category="solid">
+        <div class="renk-gorseli-kutu">
+          <img src="solid/58.webp" alt="RAL 100" loading="lazy" />
+        </div>
+        <div class="renk-kodu">RAL 100</div>
+        <div class="renk-adi">Solid</div>
+      </div>
+      <div class="renk-karti" data-category="solid">
+        <div class="renk-gorseli-kutu">
+          <img src="solid/59.webp" alt="RAL 100" loading="lazy" />
+        </div>
+        <div class="renk-kodu">RAL 100</div>
+        <div class="renk-adi">Solid</div>
+      </div>
+      <div class="renk-karti" data-category="solid">
+        <div class="renk-gorseli-kutu">
+          <img src="solid/60.webp" alt="RAL 100" loading="lazy" />
+        </div>
+        <div class="renk-kodu">RAL 100</div>
+        <div class="renk-adi">Solid</div>
+      </div>
+      <div class="renk-karti" data-category="solid">
+        <div class="renk-gorseli-kutu">
+          <img src="solid/61.webp" alt="RAL 100" loading="lazy" />
+        </div>
+        <div class="renk-kodu">RAL 100</div>
+        <div class="renk-adi">Solid</div>
+      </div>
+      <div class="renk-karti" data-category="solid">
+        <div class="renk-gorseli-kutu">
+          <img src="solid/62.webp" alt="RAL 100" loading="lazy" />
+        </div>
+        <div class="renk-kodu">RAL 100</div>
+        <div class="renk-adi">Solid</div>
+      </div>
+      <div class="renk-karti" data-category="solid">
+        <div class="renk-gorseli-kutu">
+          <img src="solid/63.webp" alt="RAL 100" loading="lazy" />
+        </div>
+        <div class="renk-kodu">RAL 100</div>
+        <div class="renk-adi">Solid</div>
+      </div>
+      <div class="renk-karti" data-category="solid">
+        <div class="renk-gorseli-kutu">
+          <img src="solid/64.webp" alt="RAL 100" loading="lazy" />
+        </div>
+        <div class="renk-kodu">RAL 100</div>
+        <div class="renk-adi">Solid</div>
+      </div>
+      <div class="renk-karti" data-category="solid">
+        <div class="renk-gorseli-kutu">
+          <img src="solid/65.webp" alt="RAL 100" loading="lazy" />
+        </div>
+        <div class="renk-kodu">RAL 100</div>
+        <div class="renk-adi">Solid</div>
+      </div>
+      <div class="renk-karti" data-category="solid">
+        <div class="renk-gorseli-kutu">
+          <img src="solid/66.webp" alt="RAL 100" loading="lazy" />
+        </div>
+        <div class="renk-kodu">RAL 100</div>
+        <div class="renk-adi">Solid</div>
+      </div>
+      <div class="renk-karti" data-category="solid">
+        <div class="renk-gorseli-kutu">
+          <img src="solid/67.webp" alt="RAL 100" loading="lazy" />
+        </div>
+        <div class="renk-kodu">RAL 100</div>
+        <div class="renk-adi">Solid</div>
+      </div>
+      <div class="renk-karti" data-category="solid">
+        <div class="renk-gorseli-kutu">
+          <img src="solid/68.webp" alt="RAL 100" loading="lazy" />
+        </div>
+        <div class="renk-kodu">RAL 100</div>
+        <div class="renk-adi">Solid</div>
+      </div>
+      <div class="renk-karti" data-category="solid">
+        <div class="renk-gorseli-kutu">
+          <img src="solid/69.webp" alt="RAL 100" loading="lazy" />
+        </div>
+        <div class="renk-kodu">RAL 100</div>
+        <div class="renk-adi">Solid</div>
+      </div>
+      <div class="renk-karti" data-category="solid">
+        <div class="renk-gorseli-kutu">
+          <img src="solid/70.webp" alt="RAL 100" loading="lazy" />
+        </div>
+        <div class="renk-kodu">RAL 100</div>
+        <div class="renk-adi">Solid</div>
+      </div>
+      <div class="renk-karti" data-category="solid">
+        <div class="renk-gorseli-kutu">
+          <img src="solid/71.webp" alt="RAL 100" loading="lazy" />
+        </div>
+        <div class="renk-kodu">RAL 100</div>
+        <div class="renk-adi">Solid</div>
+      </div>
+      <div class="renk-karti" data-category="solid">
+        <div class="renk-gorseli-kutu">
+          <img src="solid/72.webp" alt="RAL 100" loading="lazy" />
+        </div>
+        <div class="renk-kodu">RAL 100</div>
+        <div class="renk-adi">Solid</div>
+      </div>
+      <div class="renk-karti" data-category="solid">
+        <div class="renk-gorseli-kutu">
+          <img src="solid/73.webp" alt="RAL 100" loading="lazy" />
+        </div>
+        <div class="renk-kodu">RAL 100</div>
+        <div class="renk-adi">Solid</div>
+      </div>
+      <div class="renk-karti" data-category="solid">
+        <div class="renk-gorseli-kutu">
+          <img src="solid/74.webp" alt="RAL 100" loading="lazy" />
+        </div>
+        <div class="renk-kodu">RAL 100</div>
+        <div class="renk-adi">Solid</div>
+      </div>
+      <div class="renk-karti" data-category="solid">
+        <div class="renk-gorseli-kutu">
+          <img src="solid/75.webp" alt="RAL 100" loading="lazy" />
+        </div>
+        <div class="renk-kodu">RAL 100</div>
+        <div class="renk-adi">Solid</div>
+      </div>
+      <div class="renk-karti" data-category="solid">
+        <div class="renk-gorseli-kutu">
+          <img src="solid/76.webp" alt="RAL 100" loading="lazy" />
+        </div>
+        <div class="renk-kodu">RAL 100</div>
+        <div class="renk-adi">Solid</div>
+      </div>
+      <div class="renk-karti" data-category="solid">
+        <div class="renk-gorseli-kutu">
+          <img src="solid/77.webp" alt="RAL 100" loading="lazy" />
+        </div>
+        <div class="renk-kodu">RAL 100</div>
+        <div class="renk-adi">Solid</div>
+      </div>
+      <div class="renk-karti" data-category="solid">
+        <div class="renk-gorseli-kutu">
+          <img src="solid/78.webp" alt="RAL 100" loading="lazy" />
+        </div>
+        <div class="renk-kodu">RAL 100</div>
+        <div class="renk-adi">Solid</div>
+      </div>
+      <div class="renk-karti" data-category="solid">
+        <div class="renk-gorseli-kutu">
+          <img src="solid/79.webp" alt="RAL 100" loading="lazy" />
+        </div>
+        <div class="renk-kodu">RAL 100</div>
+        <div class="renk-adi">Solid</div>
+      </div>
+      <div class="renk-karti" data-category="solid">
+        <div class="renk-gorseli-kutu">
+          <img src="solid/80.webp" alt="RAL 100" loading="lazy" />
+        </div>
+        <div class="renk-kodu">RAL 100</div>
+        <div class="renk-adi">Solid</div>
+      </div>
+      <div class="renk-karti" data-category="solid">
+        <div class="renk-gorseli-kutu">
+          <img src="solid/81.webp" alt="RAL 100" loading="lazy" />
+        </div>
+        <div class="renk-kodu">RAL 100</div>
+        <div class="renk-adi">Solid</div>
+      </div>
+      <div class="renk-karti" data-category="solid">
+        <div class="renk-gorseli-kutu">
+          <img src="solid/82.webp" alt="RAL 100" loading="lazy" />
+        </div>
+        <div class="renk-kodu">RAL 100</div>
+        <div class="renk-adi">Solid</div>
+      </div>
+      <div class="renk-karti" data-category="solid">
+        <div class="renk-gorseli-kutu">
+          <img src="solid/83.webp" alt="RAL 100" loading="lazy" />
+        </div>
+        <div class="renk-kodu">RAL 100</div>
+        <div class="renk-adi">Solid</div>
+      </div>
+      <div class="renk-karti" data-category="solid">
+        <div class="renk-gorseli-kutu">
+          <img src="solid/84.webp" alt="RAL 100" loading="lazy" />
+        </div>
+        <div class="renk-kodu">RAL 100</div>
+        <div class="renk-adi">Solid</div>
+      </div>
+      <div class="renk-karti" data-category="solid">
+        <div class="renk-gorseli-kutu">
+          <img src="solid/85.webp" alt="RAL 100" loading="lazy" />
+        </div>
+        <div class="renk-kodu">RAL 100</div>
+        <div class="renk-adi">Solid</div>
+      </div>
+      <div class="renk-karti" data-category="solid">
+        <div class="renk-gorseli-kutu">
+          <img src="solid/86.webp" alt="RAL 100" loading="lazy" />
+        </div>
+        <div class="renk-kodu">RAL 100</div>
+        <div class="renk-adi">Solid</div>
+      </div>
+      <div class="renk-karti" data-category="solid">
+        <div class="renk-gorseli-kutu">
+          <img src="solid/87.webp" alt="RAL 100" loading="lazy" />
+        </div>
+        <div class="renk-kodu">RAL 100</div>
+        <div class="renk-adi">Solid</div>
+      </div>
+      <div class="renk-karti" data-category="solid">
+        <div class="renk-gorseli-kutu">
+          <img src="solid/88.webp" alt="RAL 100" loading="lazy" />
+        </div>
+        <div class="renk-kodu">RAL 100</div>
+        <div class="renk-adi">Solid</div>
+      </div>
+      <div class="renk-karti" data-category="solid">
+        <div class="renk-gorseli-kutu">
+          <img src="solid/89.webp" alt="RAL 100" loading="lazy" />
+        </div>
+        <div class="renk-kodu">RAL 100</div>
+        <div class="renk-adi">Solid</div>
+      </div>
+      <div class="renk-karti" data-category="solid">
+        <div class="renk-gorseli-kutu">
+          <img src="solid/90.webp" alt="RAL 100" loading="lazy" />
+        </div>
+        <div class="renk-kodu">RAL 100</div>
+        <div class="renk-adi">Solid</div>
+      </div>
+      <div class="renk-karti" data-category="solid">
+        <div class="renk-gorseli-kutu">
+          <img src="solid/91.webp" alt="RAL 100" loading="lazy" />
+        </div>
+        <div class="renk-kodu">RAL 100</div>
+        <div class="renk-adi">Solid</div>
+      </div>
+      <div class="renk-karti" data-category="solid">
+        <div class="renk-gorseli-kutu">
+          <img src="solid/92.webp" alt="RAL 100" loading="lazy" />
+        </div>
+        <div class="renk-kodu">RAL 100</div>
+        <div class="renk-adi">Solid</div>
+      </div>
+      <div class="renk-karti" data-category="solid">
+        <div class="renk-gorseli-kutu">
+          <img src="solid/93.webp" alt="RAL 100" loading="lazy" />
+        </div>
+        <div class="renk-kodu">RAL 100</div>
+        <div class="renk-adi">Solid</div>
+      </div>
+      <div class="renk-karti" data-category="solid">
+        <div class="renk-gorseli-kutu">
+          <img src="solid/94.webp" alt="RAL 100" loading="lazy" />
+        </div>
+        <div class="renk-kodu">RAL 100</div>
+        <div class="renk-adi">Solid</div>
+      </div>
+      <div class="renk-karti" data-category="solid">
+        <div class="renk-gorseli-kutu">
+          <img src="solid/95.webp" alt="RAL 100" loading="lazy" />
+        </div>
+        <div class="renk-kodu">RAL 100</div>
+        <div class="renk-adi">Solid</div>
+      </div>
+      <div class="renk-karti" data-category="solid">
+        <div class="renk-gorseli-kutu">
+          <img src="solid/96.webp" alt="RAL 100" loading="lazy" />
+        </div>
+        <div class="renk-kodu">RAL 100</div>
+        <div class="renk-adi">Solid</div>
+      </div>
+      <div class="renk-karti" data-category="solid">
+        <div class="renk-gorseli-kutu">
+          <img src="solid/97.webp" alt="RAL 100" loading="lazy" />
+        </div>
+        <div class="renk-kodu">RAL 100</div>
+        <div class="renk-adi">Solid</div>
+      </div>
+      <div class="renk-karti" data-category="solid">
+        <div class="renk-gorseli-kutu">
+          <img src="solid/98.webp" alt="RAL 100" loading="lazy" />
+        </div>
+        <div class="renk-kodu">RAL 100</div>
+        <div class="renk-adi">Solid</div>
+      </div>
+      <div class="renk-karti" data-category="solid">
+        <div class="renk-gorseli-kutu">
+          <img src="solid/99.webp" alt="RAL 100" loading="lazy" />
+        </div>
+        <div class="renk-kodu">RAL 100</div>
+        <div class="renk-adi">Solid</div>
+      </div>
+      <div class="renk-karti" data-category="solid">
+        <div class="renk-gorseli-kutu">
+          <img src="solid/100.webp" alt="RAL 100" loading="lazy" />
+        </div>
+        <div class="renk-kodu">RAL 100</div>
+        <div class="renk-adi">Solid</div>
+      </div>
+      <div class="renk-karti" data-category="solid">
+        <div class="renk-gorseli-kutu">
+          <img src="solid/101.webp" alt="RAL 100" loading="lazy" />
+        </div>
+        <div class="renk-kodu">RAL 100</div>
+        <div class="renk-adi">Solid</div>
+      </div>
+      <div class="renk-karti" data-category="solid">
+        <div class="renk-gorseli-kutu">
+          <img src="solid/102.webp" alt="RAL 100" loading="lazy" />
+        </div>
+        <div class="renk-kodu">RAL 100</div>
+        <div class="renk-adi">Solid</div>
+      </div>
+      <div class="renk-karti" data-category="solid">
+        <div class="renk-gorseli-kutu">
+          <img src="solid/103.webp" alt="RAL 100" loading="lazy" />
+        </div>
+        <div class="renk-kodu">RAL 100</div>
+        <div class="renk-adi">Solid</div>
+      </div>
+      <div class="renk-karti" data-category="solid">
+        <div class="renk-gorseli-kutu">
+          <img src="solid/104.webp" alt="RAL 100" loading="lazy" />
+        </div>
+        <div class="renk-kodu">RAL 100</div>
+        <div class="renk-adi">Solid</div>
+      </div>
+      <div class="renk-karti" data-category="solid">
+        <div class="renk-gorseli-kutu">
+          <img src="solid/105.webp" alt="RAL 100" loading="lazy" />
+        </div>
+        <div class="renk-kodu">RAL 100</div>
+        <div class="renk-adi">Solid</div>
+      </div>
+      <div class="renk-karti" data-category="solid">
+        <div class="renk-gorseli-kutu">
+          <img src="solid/106.webp" alt="RAL 100" loading="lazy" />
+        </div>
+        <div class="renk-kodu">RAL 100</div>
+        <div class="renk-adi">Solid</div>
+      </div>
+      <div class="renk-karti" data-category="solid">
+        <div class="renk-gorseli-kutu">
+          <img src="solid/107.webp" alt="RAL 100" loading="lazy" />
+        </div>
+        <div class="renk-kodu">RAL 100</div>
+        <div class="renk-adi">Solid</div>
+      </div>
+      <div class="renk-karti" data-category="solid">
+        <div class="renk-gorseli-kutu">
+          <img src="solid/108.webp" alt="RAL 100" loading="lazy" />
+        </div>
+        <div class="renk-kodu">RAL 100</div>
+        <div class="renk-adi">Solid</div>
+      </div>
+      <div class="renk-karti" data-category="solid">
+        <div class="renk-gorseli-kutu">
+          <img src="solid/109.webp" alt="RAL 100" loading="lazy" />
+        </div>
+        <div class="renk-kodu">RAL 100</div>
+        <div class="renk-adi">Solid</div>
+      </div>
+      <div class="renk-karti" data-category="solid">
+        <div class="renk-gorseli-kutu">
+          <img src="solid/110.webp" alt="RAL 100" loading="lazy" />
+        </div>
+        <div class="renk-kodu">RAL 100</div>
+        <div class="renk-adi">Solid</div>
+      </div>
+      <div class="renk-karti" data-category="solid">
+        <div class="renk-gorseli-kutu">
+          <img src="solid/111.webp" alt="RAL 100" loading="lazy" />
+        </div>
+        <div class="renk-kodu">RAL 100</div>
+        <div class="renk-adi">Solid</div>
+      </div>
+      <div class="renk-karti" data-category="solid">
+        <div class="renk-gorseli-kutu">
+          <img src="solid/112.webp" alt="RAL 100" loading="lazy" />
+        </div>
+        <div class="renk-kodu">RAL 100</div>
+        <div class="renk-adi">Solid</div>
+      </div>
+      <div class="renk-karti" data-category="solid">
+        <div class="renk-gorseli-kutu">
+          <img src="solid/113.webp" alt="RAL 100" loading="lazy" />
+        </div>
+        <div class="renk-kodu">RAL 100</div>
+        <div class="renk-adi">Solid</div>
+      </div>
+      <div class="renk-karti" data-category="solid">
+        <div class="renk-gorseli-kutu">
+          <img src="solid/114.webp" alt="RAL 100" loading="lazy" />
+        </div>
+        <div class="renk-kodu">RAL 100</div>
+        <div class="renk-adi">Solid</div>
+      </div>
+      <div class="renk-karti" data-category="solid">
+        <div class="renk-gorseli-kutu">
+          <img src="solid/115.webp" alt="RAL 100" loading="lazy" />
+        </div>
+        <div class="renk-kodu">RAL 100</div>
+        <div class="renk-adi">Solid</div>
+      </div>
+      <div class="renk-karti" data-category="solid">
+        <div class="renk-gorseli-kutu">
+          <img src="solid/116.webp" alt="RAL 100" loading="lazy" />
+        </div>
+        <div class="renk-kodu">RAL 100</div>
+        <div class="renk-adi">Solid</div>
+      </div>
+      <div class="renk-karti" data-category="solid">
+        <div class="renk-gorseli-kutu">
+          <img src="solid/117.webp" alt="RAL 100" loading="lazy" />
+        </div>
+        <div class="renk-kodu">RAL 100</div>
+        <div class="renk-adi">Solid</div>
+      </div>
+      <div class="renk-karti" data-category="solid">
+        <div class="renk-gorseli-kutu">
+          <img src="solid/118.webp" alt="RAL 100" loading="lazy" />
+        </div>
+        <div class="renk-kodu">RAL 100</div>
+        <div class="renk-adi">Solid</div>
+      </div>
+      <div class="renk-karti" data-category="solid">
+        <div class="renk-gorseli-kutu">
+          <img src="solid/119.webp" alt="RAL 100" loading="lazy" />
+        </div>
+        <div class="renk-kodu">RAL 100</div>
+        <div class="renk-adi">Solid</div>
+      </div>
+      <div class="renk-karti" data-category="solid">
+        <div class="renk-gorseli-kutu">
+          <img src="solid/120.webp" alt="RAL 100" loading="lazy" />
+        </div>
+        <div class="renk-kodu">RAL 100</div>
+        <div class="renk-adi">Solid</div>
+      </div>
+      <div class="renk-karti" data-category="solid">
+        <div class="renk-gorseli-kutu">
+          <img src="solid/121.webp" alt="RAL 100" loading="lazy" />
+        </div>
+        <div class="renk-kodu">RAL 100</div>
+        <div class="renk-adi">Solid</div>
+      </div>
+      <div class="renk-karti" data-category="solid">
+        <div class="renk-gorseli-kutu">
+          <img src="solid/122.webp" alt="RAL 100" loading="lazy" />
+        </div>
+        <div class="renk-kodu">RAL 100</div>
+        <div class="renk-adi">Solid</div>
+      </div>
+      <div class="renk-karti" data-category="solid">
+        <div class="renk-gorseli-kutu">
+          <img src="solid/123.webp" alt="RAL 100" loading="lazy" />
+        </div>
+        <div class="renk-kodu">RAL 100</div>
+        <div class="renk-adi">Solid</div>
+      </div>
+      <div class="renk-karti" data-category="solid">
+        <div class="renk-gorseli-kutu">
+          <img src="solid/124.webp" alt="RAL 100" loading="lazy" />
+        </div>
+        <div class="renk-kodu">RAL 100</div>
+        <div class="renk-adi">Solid</div>
+      </div>
+      <div class="renk-karti" data-category="solid">
+        <div class="renk-gorseli-kutu">
+          <img src="solid/125.webp" alt="RAL 100" loading="lazy" />
+        </div>
+        <div class="renk-kodu">RAL 100</div>
+        <div class="renk-adi">Solid</div>
+      </div>
+      <div class="renk-karti" data-category="solid">
+        <div class="renk-gorseli-kutu">
+          <img src="solid/1005.webp" alt="RAL 100" loading="lazy" />
+        </div>
+        <div class="renk-kodu">RAL 100</div>
+        <div class="renk-adi">Solid</div>
+      </div>
+
+      <div class="renk-karti" data-category="metalikseri">
+        <div class="renk-gorseli-kutu">
+          <img src="metalikseri/1.webp" alt="RAL 100" loading="lazy" />
+        </div>
+        <div class="renk-kodu">RAL 100</div>
+        <div class="renk-adi">Metalic</div>
+      </div>
+      <div class="renk-karti" data-category="metalikseri">
+        <div class="renk-gorseli-kutu">
+          <img src="metalikseri/2.webp" alt="RAL 100" loading="lazy" />
+        </div>
+        <div class="renk-kodu">RAL 100</div>
+        <div class="renk-adi">Metalic</div>
+      </div>
+      <div class="renk-karti" data-category="metalikseri">
+        <div class="renk-gorseli-kutu">
+          <img src="metalikseri/3.webp" alt="RAL 100" loading="lazy" />
+        </div>
+        <div class="renk-kodu">RAL 100</div>
+        <div class="renk-adi">Metalic</div>
+      </div>
+      <div class="renk-karti" data-category="metalikseri">
+        <div class="renk-gorseli-kutu">
+          <img src="metalikseri/4.webp" alt="RAL 100" loading="lazy" />
+        </div>
+        <div class="renk-kodu">RAL 100</div>
+        <div class="renk-adi">Metalic</div>
+      </div>
+      <div class="renk-karti" data-category="metalikseri">
+        <div class="renk-gorseli-kutu">
+          <img src="metalikseri/5.webp" alt="RAL 100" loading="lazy" />
+        </div>
+        <div class="renk-kodu">RAL 100</div>
+        <div class="renk-adi">Metalic</div>
+      </div>
+      <div class="renk-karti" data-category="metalikseri">
+        <div class="renk-gorseli-kutu">
+          <img src="metalikseri/6.webp" alt="RAL 100" loading="lazy" />
+        </div>
+        <div class="renk-kodu">RAL 100</div>
+        <div class="renk-adi">Metalic</div>
+      </div>
+      <div class="renk-karti" data-category="metalikseri">
+        <div class="renk-gorseli-kutu">
+          <img src="metalikseri/7.webp" alt="RAL 100" loading="lazy" />
+        </div>
+        <div class="renk-kodu">RAL 100</div>
+        <div class="renk-adi">Metalic</div>
+      </div>
+      <div class="renk-karti" data-category="metalikseri">
+        <div class="renk-gorseli-kutu">
+          <img src="metalikseri/8.webp" alt="RAL 100" loading="lazy" />
+        </div>
+        <div class="renk-kodu">RAL 100</div>
+        <div class="renk-adi">Metalic</div>
+      </div>
+      <div class="renk-karti" data-category="metalikseri">
+        <div class="renk-gorseli-kutu">
+          <img src="metalikseri/9.webp" alt="RAL 100" loading="lazy" />
+        </div>
+        <div class="renk-kodu">RAL 100</div>
+        <div class="renk-adi">Metalic</div>
+      </div>
+      <div class="renk-karti" data-category="metalikseri">
+        <div class="renk-gorseli-kutu">
+          <img src="metalikseri/10.webp" alt="RAL 100" loading="lazy" />
+        </div>
+        <div class="renk-kodu">RAL 100</div>
+        <div class="renk-adi">Metalic</div>
+      </div>
+      <div class="renk-karti" data-category="metalikseri">
+        <div class="renk-gorseli-kutu">
+          <img src="metalikseri/11.webp" alt="RAL 100" loading="lazy" />
+        </div>
+        <div class="renk-kodu">RAL 100</div>
+        <div class="renk-adi">Metalic</div>
+      </div>
+      <div class="renk-karti" data-category="metalikseri">
+        <div class="renk-gorseli-kutu">
+          <img src="metalikseri/12.webp" alt="RAL 100" loading="lazy" />
+        </div>
+        <div class="renk-kodu">RAL 100</div>
+        <div class="renk-adi">Metalic</div>
+      </div>
+      <div class="renk-karti" data-category="metalikseri">
+        <div class="renk-gorseli-kutu">
+          <img src="metalikseri/13.webp" alt="RAL 100" loading="lazy" />
+        </div>
+        <div class="renk-kodu">RAL 100</div>
+        <div class="renk-adi">Metalic</div>
+      </div>
+      <div class="renk-karti" data-category="metalikseri">
+        <div class="renk-gorseli-kutu">
+          <img src="metalikseri/14.webp" alt="RAL 100" loading="lazy" />
+        </div>
+        <div class="renk-kodu">RAL 100</div>
+        <div class="renk-adi">Metalic</div>
+      </div>
+
+      <div class="renk-karti" data-category="brushseri">
+        <div class="renk-gorseli-kutu">
+          <img src="brushseri/1.webp" alt="RAL 100" loading="lazy" />
+        </div>
+        <div class="renk-kodu">RAL 100</div>
+        <div class="renk-adi">Brush</div>
+      </div>
+      <div class="renk-karti" data-category="brushseri">
+        <div class="renk-gorseli-kutu">
+          <img src="brushseri/2.webp" alt="RAL 100" loading="lazy" />
+        </div>
+        <div class="renk-kodu">RAL 100</div>
+        <div class="renk-adi">Brush</div>
+      </div>
+      <div class="renk-karti" data-category="brushseri">
+        <div class="renk-gorseli-kutu">
+          <img src="brushseri/3.webp" alt="RAL 100" loading="lazy" />
+        </div>
+        <div class="renk-kodu">RAL 100</div>
+        <div class="renk-adi">Brush</div>
+      </div>
+      <div class="renk-karti" data-category="brushseri">
+        <div class="renk-gorseli-kutu">
+          <img src="brushseri/4.webp" alt="RAL 100" loading="lazy" />
+        </div>
+        <div class="renk-kodu">RAL 100</div>
+        <div class="renk-adi">Brush</div>
+      </div>
+      <div class="renk-karti" data-category="brushseri">
+        <div class="renk-gorseli-kutu">
+          <img src="brushseri/5.webp" alt="RAL 100" loading="lazy" />
+        </div>
+        <div class="renk-kodu">RAL 100</div>
+        <div class="renk-adi">Brush</div>
+      </div>
+      <div class="renk-karti" data-category="brushseri">
+        <div class="renk-gorseli-kutu">
+          <img src="brushseri/6.webp" alt="RAL 100" loading="lazy" />
+        </div>
+        <div class="renk-kodu">RAL 100</div>
+        <div class="renk-adi">Brush</div>
+      </div>
+      <div class="renk-karti" data-category="brushseri">
+        <div class="renk-gorseli-kutu">
+          <img src="brushseri/7.webp" alt="RAL 100" loading="lazy" />
+        </div>
+        <div class="renk-kodu">RAL 100</div>
+        <div class="renk-adi">Brush</div>
+      </div>
+      <div class="renk-karti" data-category="brushseri">
+        <div class="renk-gorseli-kutu">
+          <img src="brushseri/8.webp" alt="RAL 100" loading="lazy" />
+        </div>
+        <div class="renk-kodu">RAL 100</div>
+        <div class="renk-adi">Brush</div>
+      </div>
+
+      <div class="renk-karti" data-category="iridyumseri">
+        <div class="renk-gorseli-kutu">
+          <img src="iridyumseri/1.webp" alt="RAL 100" loading="lazy" />
+        </div>
+        <div class="renk-kodu">RAL 100</div>
+        <div class="renk-adi">Iridium</div>
+      </div>
+      <div class="renk-karti" data-category="iridyumseri">
+        <div class="renk-gorseli-kutu">
+          <img src="iridyumseri/2.webp" alt="RAL 100" loading="lazy" />
+        </div>
+        <div class="renk-kodu">RAL 100</div>
+        <div class="renk-adi">Iridium</div>
+      </div>
+      <div class="renk-karti" data-category="iridyumseri">
+        <div class="renk-gorseli-kutu">
+          <img src="iridyumseri/3.webp" alt="RAL 100" loading="lazy" />
+        </div>
+        <div class="renk-kodu">RAL 100</div>
+        <div class="renk-adi">Iridium</div>
+      </div>
+      <div class="renk-karti" data-category="iridyumseri">
+        <div class="renk-gorseli-kutu">
+          <img src="iridyumseri/4.webp" alt="RAL 100" loading="lazy" />
+        </div>
+        <div class="renk-kodu">RAL 100</div>
+        <div class="renk-adi">Iridium</div>
+      </div>
+      <div class="renk-karti" data-category="iridyumseri">
+        <div class="renk-gorseli-kutu">
+          <img src="iridyumseri/5.webp" alt="RAL 100" loading="lazy" />
+        </div>
+        <div class="renk-kodu">RAL 100</div>
+        <div class="renk-adi">Iridium</div>
+      </div>
+      <div class="renk-karti" data-category="iridyumseri">
+        <div class="renk-gorseli-kutu">
+          <img src="iridyumseri/6.webp" alt="RAL 100" loading="lazy" />
+        </div>
+        <div class="renk-kodu">RAL 100</div>
+        <div class="renk-adi">Iridium</div>
+      </div>
+      <div class="renk-karti" data-category="iridyumseri">
+        <div class="renk-gorseli-kutu">
+          <img src="iridyumseri/7.webp" alt="RAL 100" loading="lazy" />
+        </div>
+        <div class="renk-kodu">RAL 100</div>
+        <div class="renk-adi">Iridium</div>
+      </div>
+      <div class="renk-karti" data-category="iridyumseri">
+        <div class="renk-gorseli-kutu">
+          <img src="iridyumseri/7.webp" alt="RAL 100" loading="lazy" />
+        </div>
+        <div class="renk-kodu">RAL 100</div>
+        <div class="renk-adi">Iridium</div>
+      </div>
+
+      <div class="renk-karti" data-category="metallookseri">
+        <div class="renk-gorseli-kutu">
+          <img src="metallookseri/1.webp" alt="RAL 100" loading="lazy" />
+        </div>
+        <div class="renk-kodu">RAL 100</div>
+        <div class="renk-adi">Metal Look</div>
+      </div>
+      <div class="renk-karti" data-category="metallookseri">
+        <div class="renk-gorseli-kutu">
+          <img src="metallookseri/2.webp" alt="RAL 100" loading="lazy" />
+        </div>
+        <div class="renk-kodu">RAL 100</div>
+        <div class="renk-adi">Metal Look</div>
+      </div>
+      <div class="renk-karti" data-category="metallookseri">
+        <div class="renk-gorseli-kutu">
+          <img src="metallookseri/3.webp" alt="RAL 100" loading="lazy" />
+        </div>
+        <div class="renk-kodu">RAL 100</div>
+        <div class="renk-adi">Metal Look</div>
+      </div>
+      <div class="renk-karti" data-category="metallookseri">
+        <div class="renk-gorseli-kutu">
+          <img src="metallookseri/4.webp" alt="RAL 100" loading="lazy" />
+        </div>
+        <div class="renk-kodu">RAL 100</div>
+        <div class="renk-adi">Metal Look</div>
+      </div>
+      <div class="renk-karti" data-category="metallookseri">
+        <div class="renk-gorseli-kutu">
+          <img src="metallookseri/5.webp" alt="RAL 100" loading="lazy" />
+        </div>
+        <div class="renk-kodu">RAL 100</div>
+        <div class="renk-adi">Metal Look</div>
+      </div>
+      <div class="renk-karti" data-category="metallookseri">
+        <div class="renk-gorseli-kutu">
+          <img src="metallookseri/6.webp" alt="RAL 100" loading="lazy" />
+        </div>
+        <div class="renk-kodu">RAL 100</div>
+        <div class="renk-adi">Metal Look</div>
+      </div>
+      <div class="renk-karti" data-category="metallookseri">
+        <div class="renk-gorseli-kutu">
+          <img src="metallookseri/7.webp" alt="RAL 100" loading="lazy" />
+        </div>
+        <div class="renk-kodu">RAL 100</div>
+        <div class="renk-adi">Metal Look</div>
+      </div>
+      <div class="renk-karti" data-category="metallookseri">
+        <div class="renk-gorseli-kutu">
+          <img src="metallookseri/8.webp" alt="RAL 100" loading="lazy" />
+        </div>
+        <div class="renk-kodu">RAL 100</div>
+        <div class="renk-adi">Metal Look</div>
+      </div>
+      <div class="renk-karti" data-category="metallookseri">
+        <div class="renk-gorseli-kutu">
+          <img src="metallookseri/9.webp" alt="RAL 100" loading="lazy" />
+        </div>
+        <div class="renk-kodu">RAL 100</div>
+        <div class="renk-adi">Metal Look</div>
+      </div>
+      <div class="renk-karti" data-category="metallookseri">
+        <div class="renk-gorseli-kutu">
+          <img src="metallookseri/10.webp" alt="RAL 100" loading="lazy" />
+        </div>
+        <div class="renk-kodu">RAL 100</div>
+        <div class="renk-adi">Metal Look</div>
+      </div>
+      <div class="renk-karti" data-category="metallookseri">
+        <div class="renk-gorseli-kutu">
+          <img src="metallookseri/11.webp" alt="RAL 100" loading="lazy" />
+        </div>
+        <div class="renk-kodu">RAL 100</div>
+        <div class="renk-adi">Metal Look</div>
+      </div>
+      <div class="renk-karti" data-category="metallookseri">
+        <div class="renk-gorseli-kutu">
+          <img src="metallookseri/12.webp" alt="RAL 100" loading="lazy" />
+        </div>
+        <div class="renk-kodu">RAL 100</div>
+        <div class="renk-adi">Metal Look</div>
+      </div>
+
+      <div class="renk-karti" data-category="vernikseri">
+        <div class="renk-gorseli-kutu">
+          <img src="vernikseri/1.webp" alt="RAL 100" loading="lazy" />
+        </div>
+        <div class="renk-kodu">RAL 100</div>
+        <div class="renk-adi">Wrinkle</div>
+      </div>
+      <div class="renk-karti" data-category="vernikseri">
+        <div class="renk-gorseli-kutu">
+          <img src="vernikseri/2.webp" alt="RAL 100" loading="lazy" />
+        </div>
+        <div class="renk-kodu">RAL 100</div>
+        <div class="renk-adi">Wrinkle</div>
+      </div>
+      <div class="renk-karti" data-category="vernikseri">
+        <div class="renk-gorseli-kutu">
+          <img src="vernikseri/3.webp" alt="RAL 100" loading="lazy" />
+        </div>
+        <div class="renk-kodu">RAL 100</div>
+        <div class="renk-adi">Wrinkle</div>
+      </div>
+      <div class="renk-karti" data-category="vernikseri">
+        <div class="renk-gorseli-kutu">
+          <img src="vernikseri/4.webp" alt="RAL 100" loading="lazy" />
+        </div>
+        <div class="renk-kodu">RAL 100</div>
+        <div class="renk-adi">Wrinkle</div>
+      </div>
+      <div class="renk-karti" data-category="vernikseri">
+        <div class="renk-gorseli-kutu">
+          <img src="vernikseri/5.webp" alt="RAL 100" loading="lazy" />
+        </div>
+        <div class="renk-kodu">RAL 100</div>
+        <div class="renk-adi">Wrinkle</div>
+      </div>
+      <div class="renk-karti" data-category="vernikseri">
+        <div class="renk-gorseli-kutu">
+          <img src="vernikseri/6.webp" alt="RAL 100" loading="lazy" />
+        </div>
+        <div class="renk-kodu">RAL 100</div>
+        <div class="renk-adi">Wrinkle</div>
+      </div>
+      <div class="renk-karti" data-category="vernikseri">
+        <div class="renk-gorseli-kutu">
+          <img src="vernikseri/7.webp" alt="RAL 100" loading="lazy" />
+        </div>
+        <div class="renk-kodu">RAL 100</div>
+        <div class="renk-adi">Wrinkle</div>
+      </div>
+      <div class="renk-karti" data-category="vernikseri">
+        <div class="renk-gorseli-kutu">
+          <img src="vernikseri/8.webp" alt="RAL 100" loading="lazy" />
+        </div>
+        <div class="renk-kodu">RAL 100</div>
+        <div class="renk-adi">Wrinkle</div>
+      </div>
+      <div class="renk-karti" data-category="vernikseri">
+        <div class="renk-gorseli-kutu">
+          <img src="vernikseri/9.webp" alt="RAL 100" loading="lazy" />
+        </div>
+        <div class="renk-kodu">RAL 100</div>
+        <div class="renk-adi">Wrinkle</div>
+      </div>
+      <div class="renk-karti" data-category="vernikseri">
+        <div class="renk-gorseli-kutu">
+          <img src="vernikseri/10.webp" alt="RAL 100" loading="lazy" />
+        </div>
+        <div class="renk-kodu">RAL 100</div>
+        <div class="renk-adi">Wrinkle</div>
+      </div>
+      <div class="renk-karti" data-category="vernikseri">
+        <div class="renk-gorseli-kutu">
+          <img src="vernikseri/11.webp" alt="RAL 100" loading="lazy" />
+        </div>
+        <div class="renk-kodu">RAL 100</div>
+        <div class="renk-adi">Wrinkle</div>
+      </div>
+
+      <div class="renk-karti" data-category="anadizedseri">
+        <div class="renk-gorseli-kutu">
+          <img src="anadizedseri/1.webp" alt="RAL 100" loading="lazy" />
+        </div>
+        <div class="renk-kodu">RAL 100</div>
+        <div class="renk-adi">Anodize</div>
+      </div>
+      <div class="renk-karti" data-category="anadizedseri">
+        <div class="renk-gorseli-kutu">
+          <img src="anadizedseri/2.webp" alt="RAL 100" loading="lazy" />
+        </div>
+        <div class="renk-kodu">RAL 100</div>
+        <div class="renk-adi">Anodize</div>
+      </div>
+      <div class="renk-karti" data-category="anadizedseri">
+        <div class="renk-gorseli-kutu">
+          <img src="anadizedseri/3.webp" alt="RAL 100" loading="lazy" />
+        </div>
+        <div class="renk-kodu">RAL 100</div>
+        <div class="renk-adi">Anodize</div>
+      </div>
+      <div class="renk-karti" data-category="anadizedseri">
+        <div class="renk-gorseli-kutu">
+          <img src="anadizedseri/4.webp" alt="RAL 100" loading="lazy" />
+        </div>
+        <div class="renk-kodu">RAL 100</div>
+        <div class="renk-adi">Anodize</div>
+      </div>
+      <div class="renk-karti" data-category="anadizedseri">
+        <div class="renk-gorseli-kutu">
+          <img src="anadizedseri/5.webp" alt="RAL 100" loading="lazy" />
+        </div>
+        <div class="renk-kodu">RAL 100</div>
+        <div class="renk-adi">Anodize</div>
+      </div>
+
+      <div class="renk-karti" data-category="aquaseri">
+        <div class="renk-gorseli-kutu">
+          <img src="aquaseri/1.webp" alt="RAL 100" loading="lazy" />
+        </div>
+        <div class="renk-kodu">RAL 100</div>
+        <div class="renk-adi">Aqua</div>
+      </div>
+      <div class="renk-karti" data-category="aquaseri">
+        <div class="renk-gorseli-kutu">
+          <img src="aquaseri/2.webp" alt="RAL 100" loading="lazy" />
+        </div>
+        <div class="renk-kodu">RAL 100</div>
+        <div class="renk-adi">Aqua</div>
+      </div>
+      <div class="renk-karti" data-category="aquaseri">
+        <div class="renk-gorseli-kutu">
+          <img src="aquaseri/3.webp" alt="RAL 100" loading="lazy" />
+        </div>
+        <div class="renk-kodu">RAL 100</div>
+        <div class="renk-adi">Aqua</div>
+      </div>
+      <div class="renk-karti" data-category="aquaseri">
+        <div class="renk-gorseli-kutu">
+          <img src="aquaseri/4.webp" alt="RAL 100" loading="lazy" />
+        </div>
+        <div class="renk-kodu">RAL 100</div>
+        <div class="renk-adi">Aqua</div>
+      </div>
+      <div class="renk-karti" data-category="aquaseri">
+        <div class="renk-gorseli-kutu">
+          <img src="aquaseri/5.webp" alt="RAL 100" loading="lazy" />
+        </div>
+        <div class="renk-kodu">RAL 100</div>
+        <div class="renk-adi">Aqua</div>
+      </div>
+
+      <div class="renk-karti" data-category="denimleseri">
+        <div class="renk-gorseli-kutu">
+          <img src="denimleseri/1.webp" alt="RAL 100" loading="lazy" />
+        </div>
+        <div class="renk-kodu">RAL 100</div>
+        <div class="renk-adi">Denim</div>
+      </div>
+      <div class="renk-karti" data-category="denimleseri">
+        <div class="renk-gorseli-kutu">
+          <img src="denimleseri/2.webp" alt="RAL 100" loading="lazy" />
+        </div>
+        <div class="renk-kodu">RAL 100</div>
+        <div class="renk-adi">Denim</div>
+      </div>
+
+      <div class="renk-karti" data-category="sparklineseri">
+        <div class="renk-gorseli-kutu">
+          <img src="sparkling/1.webp" alt="RAL 100" loading="lazy" />
+        </div>
+        <div class="renk-kodu">RAL 100</div>
+        <div class="renk-adi">Sparkling</div>
+      </div>
+      <div class="renk-karti" data-category="sparklineseri">
+        <div class="renk-gorseli-kutu">
+          <img src="sparklineseri/2.webp" alt="RAL 100" loading="lazy" />
+        </div>
+        <div class="renk-kodu">RAL 100</div>
+        <div class="renk-adi">Sparkle</div>
+      </div>
+      <div class="renk-karti" data-category="sparklineseri">
+        <div class="renk-gorseli-kutu">
+          <img src="sparklineseri/3.webp" alt="RAL 100" loading="lazy" />
+        </div>
+        <div class="renk-kodu">RAL 100</div>
+        <div class="renk-adi">Sparkle</div>
+      </div>
+      <div class="renk-karti" data-category="sparklineseri">
+        <div class="renk-gorseli-kutu">
+          <img src="sparklineseri/4.webp" alt="RAL 100" loading="lazy" />
+        </div>
+        <div class="renk-kodu">RAL 100</div>
+        <div class="renk-adi">Sparkle</div>
+      </div>
+      <div class="renk-karti" data-category="sparklineseri">
+        <div class="renk-gorseli-kutu">
+          <img src="sparklineseri/5.webp" alt="RAL 100" loading="lazy" />
+        </div>
+        <div class="renk-kodu">RAL 100</div>
+        <div class="renk-adi">Sparkle</div>
+      </div>
+      <div class="renk-karti" data-category="sparklineseri">
+        <div class="renk-gorseli-kutu">
+          <img src="sparklineseri/6.webp" alt="RAL 100" loading="lazy" />
+        </div>
+        <div class="renk-kodu">RAL 100</div>
+        <div class="renk-adi">Sparkle</div>
+      </div>
+      <div class="renk-karti" data-category="sparklineseri">
+        <div class="renk-gorseli-kutu">
+          <img src="sparklineseri/7.webp" alt="RAL 100" loading="lazy" />
+        </div>
+        <div class="renk-kodu">RAL 100</div>
+        <div class="renk-adi">Sparkle</div>
+      </div>
+
+      <div class="renk-karti" data-category="wood">
+        <div class="renk-gorseli-kutu">
+          <img src="wood/1.webp" alt="RAL 100" loading="lazy" />
+        </div>
+        <div class="renk-kodu">RAL 100</div>
+        <div class="renk-adi">Wood</div>
+      </div>
+      <div class="renk-karti" data-category="wood">
+        <div class="renk-gorseli-kutu">
+          <img src="wood/2.webp" alt="RAL 100" loading="lazy" />
+        </div>
+        <div class="renk-kodu">RAL 100</div>
+        <div class="renk-adi">Wood</div>
+      </div>
+      <div class="renk-karti" data-category="wood">
+        <div class="renk-gorseli-kutu">
+          <img src="wood/3.webp" alt="RAL 100" loading="lazy" />
+        </div>
+        <div class="renk-kodu">RAL 100</div>
+        <div class="renk-adi">Wood</div>
+      </div>
+      <div class="renk-karti" data-category="wood">
+        <div class="renk-gorseli-kutu">
+          <img src="wood/4.webp" alt="RAL 100" loading="lazy" />
+        </div>
+        <div class="renk-kodu">RAL 100</div>
+        <div class="renk-adi">Wood</div>
+      </div>
+      <div class="renk-karti" data-category="wood">
+        <div class="renk-gorseli-kutu">
+          <img src="wood/5.webp" alt="RAL 100" loading="lazy" />
+        </div>
+        <div class="renk-kodu">RAL 100</div>
+        <div class="renk-adi">Wood</div>
+      </div>
+      <div class="renk-karti" data-category="wood">
+        <div class="renk-gorseli-kutu">
+          <img src="wood/6.webp" alt="RAL 100" loading="lazy" />
+        </div>
+        <div class="renk-kodu">RAL 100</div>
+        <div class="renk-adi">Wood</div>
+      </div>
+      <div class="renk-karti" data-category="wood">
+        <div class="renk-gorseli-kutu">
+          <img src="wood/7.webp" alt="RAL 100" loading="lazy" />
+        </div>
+        <div class="renk-kodu">RAL 100</div>
+        <div class="renk-adi">Wood</div>
+      </div>
+      <div class="renk-karti" data-category="wood">
+        <div class="renk-gorseli-kutu">
+          <img src="wood/8.webp" alt="RAL 100" loading="lazy" />
+        </div>
+        <div class="renk-kodu">RAL 100</div>
+        <div class="renk-adi">Wood</div>
+      </div>
+      <div class="renk-karti" data-category="wood">
+        <div class="renk-gorseli-kutu">
+          <img src="wood/9.webp" alt="RAL 100" loading="lazy" />
+        </div>
+        <div class="renk-kodu">RAL 100</div>
+        <div class="renk-adi">Wood</div>
+      </div>
+      <div class="renk-karti" data-category="wood">
+        <div class="renk-gorseli-kutu">
+          <img src="wood/10.webp" alt="RAL 100" loading="lazy" />
+        </div>
+        <div class="renk-kodu">RAL 100</div>
+        <div class="renk-adi">Wood</div>
+      </div>
+      <div class="renk-karti" data-category="wood">
+        <div class="renk-gorseli-kutu">
+          <img src="wood/11.webp" alt="RAL 100" loading="lazy" />
+        </div>
+        <div class="renk-kodu">RAL 100</div>
+        <div class="renk-adi">Wood</div>
+      </div>
+      <div class="renk-karti" data-category="wood">
+        <div class="renk-gorseli-kutu">
+          <img src="wood/12.webp" alt="RAL 100" loading="lazy" />
+        </div>
+        <div class="renk-kodu">RAL 100</div>
+        <div class="renk-adi">Wood</div>
+      </div>
+      <div class="renk-karti" data-category="wood">
+        <div class="renk-gorseli-kutu">
+          <img src="wood/13.webp" alt="RAL 100" loading="lazy" />
+        </div>
+        <div class="renk-kodu">RAL 100</div>
+        <div class="renk-adi">Wood</div>
+      </div>
+      <div class="renk-karti" data-category="wood">
+        <div class="renk-gorseli-kutu">
+          <img src="wood/14.webp" alt="RAL 100" loading="lazy" />
+        </div>
+        <div class="renk-kodu">RAL 100</div>
+        <div class="renk-adi">Wood</div>
+      </div>
+      <div class="renk-karti" data-category="wood">
+        <div class="renk-gorseli-kutu">
+          <img src="wood/15.webp" alt="RAL 100" loading="lazy" />
+        </div>
+        <div class="renk-kodu">RAL 100</div>
+        <div class="renk-adi">Wood</div>
+      </div>
+      <div class="renk-karti" data-category="wood">
+        <div class="renk-gorseli-kutu">
+          <img src="wood/16.webp" alt="RAL 100" loading="lazy" />
+        </div>
+        <div class="renk-kodu">RAL 100</div>
+        <div class="renk-adi">Wood</div>
+      </div>
+      <div class="renk-karti" data-category="wood">
+        <div class="renk-gorseli-kutu">
+          <img src="wood/17.webp" alt="RAL 100" loading="lazy" />
+        </div>
+        <div class="renk-kodu">RAL 100</div>
+        <div class="renk-adi">Wood</div>
+      </div>
+      <div class="renk-karti" data-category="wood">
+        <div class="renk-gorseli-kutu">
+          <img src="wood/18.webp" alt="RAL 100" loading="lazy" />
+        </div>
+        <div class="renk-kodu">RAL 100</div>
+        <div class="renk-adi">Wood</div>
+      </div>
+
+      <div class="renk-karti" data-category="stoneseri">
+        <div class="renk-gorseli-kutu">
+          <img src="stoneseri/1.webp" alt="RAL 100" loading="lazy" />
+        </div>
+        <div class="renk-kodu">RAL 100</div>
+        <div class="renk-adi">Stone Series</div>
+      </div>
+      <div class="renk-karti" data-category="stoneseri">
+        <div class="renk-gorseli-kutu">
+          <img src="stoneseri/2.webp" alt="RAL 100" loading="lazy" />
+        </div>
+        <div class="renk-kodu">RAL 100</div>
+        <div class="renk-adi">Stone Series</div>
+      </div>
+      <div class="renk-karti" data-category="stoneseri">
+        <div class="renk-gorseli-kutu">
+          <img src="stoneseri/3.webp" alt="RAL 100" loading="lazy" />
+        </div>
+        <div class="renk-kodu">RAL 100</div>
+        <div class="renk-adi">Stone Series</div>
+      </div>
+      <div class="renk-karti" data-category="stoneseri">
+        <div class="renk-gorseli-kutu">
+          <img src="stoneseri/4.webp" alt="RAL 100" loading="lazy" />
+        </div>
+        <div class="renk-kodu">RAL 100</div>
+        <div class="renk-adi">Stone Series</div>
+      </div>
+      <div class="renk-karti" data-category="stoneseri">
+        <div class="renk-gorseli-kutu">
+          <img src="stoneseri/5.webp" alt="RAL 100" loading="lazy" />
+        </div>
+        <div class="renk-kodu">RAL 100</div>
+        <div class="renk-adi">Stone Series</div>
+      </div>
+      <div class="renk-karti" data-category="stoneseri">
+        <div class="renk-gorseli-kutu">
+          <img src="stoneseri/6.webp" alt="RAL 100" loading="lazy" />
+        </div>
+        <div class="renk-kodu">RAL 100</div>
+        <div class="renk-adi">Stone Series</div>
+      </div>
+      <div class="renk-karti" data-category="stoneseri">
+        <div class="renk-gorseli-kutu">
+          <img src="stoneseri/7.webp" alt="RAL 100" loading="lazy" />
+        </div>
+        <div class="renk-kodu">RAL 100</div>
+        <div class="renk-adi">Stone Series</div>
+      </div>
+      <div class="renk-karti" data-category="stoneseri">
+        <div class="renk-gorseli-kutu">
+          <img src="stoneseri/8.webp" alt="RAL 100" loading="lazy" />
+        </div>
+        <div class="renk-kodu">RAL 100</div>
+        <div class="renk-adi">Stone Series</div>
+      </div>
+      <div class="renk-karti" data-category="stoneseri">
+        <div class="renk-gorseli-kutu">
+          <img src="stoneseri/9.webp" alt="RAL 100" loading="lazy" />
+        </div>
+        <div class="renk-kodu">RAL 100</div>
+        <div class="renk-adi">Stone Series</div>
+      </div>
+      <div class="renk-karti" data-category="stoneseri">
+        <div class="renk-gorseli-kutu">
+          <img src="stoneseri/10.webp" alt="RAL 100" loading="lazy" />
+        </div>
+        <div class="renk-kodu">RAL 100</div>
+        <div class="renk-adi">Stone Series</div>
+      </div>
+      <div class="renk-karti" data-category="stoneseri">
+        <div class="renk-gorseli-kutu">
+          <img src="stoneseri/11.webp" alt="RAL 100" loading="lazy" />
+        </div>
+        <div class="renk-kodu">RAL 100</div>
+        <div class="renk-adi">Stone Series</div>
+      </div>
+      <div class="renk-karti" data-category="stoneseri">
+        <div class="renk-gorseli-kutu">
+          <img src="stoneseri/12.webp" alt="RAL 100" loading="lazy" />
+        </div>
+        <div class="renk-kodu">RAL 100</div>
+        <div class="renk-adi">Stone Series</div>
+      </div>
+
+      <div class="renk-karti" data-category="concreatseri">
+        <div class="renk-gorseli-kutu">
+          <img src="concreatseri/1.webp" alt="RAL 100" loading="lazy" />
+        </div>
+        <div class="renk-kodu">RAL 100</div>
+        <div class="renk-adi">Concrete</div>
+      </div>
+      <div class="renk-karti" data-category="concreatseri">
+        <div class="renk-gorseli-kutu">
+          <img src="concreatseri/2.webp" alt="RAL 100" loading="lazy" />
+        </div>
+        <div class="renk-kodu">RAL 100</div>
+        <div class="renk-adi">Concrete</div>
+      </div>
+      <div class="renk-karti" data-category="concreatseri">
+        <div class="renk-gorseli-kutu">
+          <img src="concreatseri/3.webp" alt="RAL 100" loading="lazy" />
+        </div>
+        <div class="renk-kodu">RAL 100</div>
+        <div class="renk-adi">Concrete</div>
+      </div>
+      <div class="renk-karti" data-category="concreatseri">
+        <div class="renk-gorseli-kutu">
+          <img src="concreatseri/4.webp" alt="RAL 100" loading="lazy" />
+        </div>
+        <div class="renk-kodu">RAL 100</div>
+        <div class="renk-adi">Concrete</div>
+      </div>
+      <div class="renk-karti" data-category="concreatseri">
+        <div class="renk-gorseli-kutu">
+          <img src="concreatseri/5.webp" alt="RAL 100" loading="lazy" />
+        </div>
+        <div class="renk-kodu">RAL 100</div>
+        <div class="renk-adi">Concrete</div>
+      </div>
+      <div class="renk-karti" data-category="concreatseri">
+        <div class="renk-gorseli-kutu">
+          <img src="concreatseri/6.webp" alt="RAL 100" loading="lazy" />
+        </div>
+        <div class="renk-kodu">RAL 100</div>
+        <div class="renk-adi">Concrete</div>
+      </div>
+    </div>
+
+    <script>
+      const menuBtn = document.getElementById("menuBtn");
+      const sideMenu = document.getElementById("sideMenu");
+      const overlay = document.getElementById("overlay");
+
+      if (menuBtn) {
+        menuBtn.addEventListener("click", () => {
+          if (sideMenu) sideMenu.classList.toggle("active");
+          if (overlay) overlay.classList.toggle("active");
+        });
+
+        if (overlay) {
+          overlay.addEventListener("click", () => {
+            if (sideMenu) sideMenu.classList.remove("active");
+            if (overlay) overlay.classList.remove("active");
+          });
+        }
+      }
+
+      document.addEventListener("DOMContentLoaded", function () {
+        const buttons = document.querySelectorAll(".filtre-btn");
+        const cards = document.querySelectorAll(".renk-karti");
+
+        buttons.forEach((button) => {
+          button.addEventListener("click", () => {
+            buttons.forEach((btn) => btn.classList.remove("aktif"));
+            button.classList.add("aktif");
+
+            const filterValue = button.getAttribute("data-filter");
+
+            cards.forEach((card) => {
+              if (
+                filterValue === "all" ||
+                card.getAttribute("data-category") === filterValue
+              ) {
+                card.style.display = "block";
+                card.style.animation = "none";
+                card.offsetHeight;
+                card.style.animation = "fadeIn 0.5s ease";
+              } else {
+                card.style.display = "none";
+              }
+            });
+          });
+        });
+      });
+    </script>
+  </body>
+</html>

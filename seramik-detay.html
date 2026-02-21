@@ -1,0 +1,139 @@
+<!doctype html>
+<html lang="tr">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Seramik Cephe Kaplama</title>
+    <link rel="stylesheet" href="navBar.css" />
+  </head>
+  <body>
+    <header class="navbar">
+      <div class="left-area">
+        <div class="hamburger" id="menuBtn">
+          <span>☰</span> <span class="menu-text">MENU</span>
+        </div>
+      </div>
+
+      <a href="index.html" class="logo">
+        <img src="images/sonlogo.png" alt="Tunahan Aydoğan" />
+      </a>
+
+      <div class="right-area">
+        <span class="phone-desktop">+90 530 504 26 77</span>
+
+        <a href="tel:+905305042677" class="phone-mobile">
+          <svg
+            xmlns="http://www.w3.org/2000/svg"
+            width="24"
+            height="24"
+            viewBox="0 0 24 24"
+            fill="none"
+            stroke="currentColor"
+            stroke-width="2"
+            stroke-linecap="round"
+            stroke-linejoin="round"
+          >
+            <path
+              d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72 12.84 12.84 0 0 0 .7 2.81 2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45 12.84 12.84 0 0 0 2.81.7A2 2 0 0 1 22 16.92z"
+            ></path>
+          </svg>
+        </a>
+      </div>
+    </header>
+
+    <nav class="side-menu" id="sideMenu">
+      <a href="index.html">Ana Sayfa</a>
+      <a href="hakkimizda.html">Hakkımızda</a>
+      <a href="projeler.html">Projeler</a>
+      <a href="Colors.html">Renk Kataloğu</a>
+    </nav>
+    <div
+      class="sayfa-kapak"
+      style="background-image: url(&quot;images/seramikcephegkt.webp&quot;)"
+    >
+      <div class="kapak-perde"></div>
+
+      <div class="kapak-baslik">
+        <h1>Seramik Cephe Kaplama</h1>
+      </div>
+    </div>
+
+    <section class="sayfa-icerik">
+      <div class="icerik-kutusu">
+        <h2>GİRİŞ</h2>
+        <p>
+          Doğal taşın ağırlığına ve bakım zorluğuna son veren seramik cephe
+          sistemleri, binanıza doğal bir doku kazandırırken mühendislik
+          avantajları sunar.
+        </p>
+        <h2>Neden Seramik?</h2>
+        <ul>
+          <li>
+            Sıfır Bakım: Leke tutmaz, kendi kendini temizleme özelliğine
+            sahiptir ve grafitiye karşı dirençlidir.
+          </li>
+          <li>
+            Ebedi Renkler: UV ışınlarından etkilenmez; rengi onlarca yıl boyunca
+            solmaz.
+          </li>
+        </ul>
+        <h2>Kullanım Alanları</h2>
+        <ul>
+          <li>
+            Kıyı Şeridi Yapıları: Tuzlu nemden etkilenmeyen korozyon direnci.
+          </li>
+          <li>
+            Kamu Binaları ve Hastaneler: Hijyenik, yanmaz (A1 sınıfı) ve darbe
+            dayanımı yüksek yüzeyler.
+          </li>
+          <li>
+            Villa Projeleri: Prestijli, doğal ve sıcak bir görünüm aranan
+            cepheler.
+          </li>
+        </ul>
+        <div class="cta-container">
+          <h3>Projeleriniz İçin Detaylı Bilgi Alın</h3>
+          <p>
+            İzolasyon çözümleri ve uzman ekibimizle görüşmek için bize hemen
+            ulaşın.
+          </p>
+          <a href="tel:+905305042677" class="cta-button">
+            <svg
+              xmlns="http://www.w3.org/2000/svg"
+              width="22"
+              height="22"
+              viewBox="0 0 24 24"
+              fill="none"
+              stroke="currentColor"
+              stroke-width="2"
+              stroke-linecap="round"
+              stroke-linejoin="round"
+            >
+              <path
+                d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72 12.84 12.84 0 0 0 .7 2.81 2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45 12.84 12.84 0 0 0 2.81.7A2 2 0 0 1 22 16.92z"
+              ></path>
+            </svg>
+            BİZİ ARAYIN: +90 530 504 26 77
+          </a>
+        </div>
+      </div>
+    </section>
+    <script>
+      const menuBtn = document.getElementById("menuBtn");
+      const sideMenu = document.getElementById("sideMenu");
+      const overlay = document.getElementById("overlay");
+
+      if (menuBtn) {
+        menuBtn.addEventListener("click", () => {
+          sideMenu.classList.toggle("active");
+          overlay.classList.toggle("active");
+        });
+
+        overlay.addEventListener("click", () => {
+          sideMenu.classList.remove("active");
+          overlay.classList.remove("active");
+        });
+      }
+    </script>
+  </body>
+</html>
